@@ -16,6 +16,7 @@ from app.db.session import get_db
 from app.services.conflict_detection_service import ConflictDetectionService
 from app.services.event_extraction_service import EventExtractionService
 from app.services.question_generation_service import QuestionGenerationService
+from app.services.speech_to_text_service import SpeechToTextService, get_stt_service
 from app.services.testimony_service import TestimonyIngestionService
 from app.services.timeline_reconstruction_service import TimelineReconstructionService
 
@@ -77,3 +78,5 @@ EventSvc = Annotated[EventExtractionService, Depends(get_event_service)]
 TimelineSvc = Annotated[TimelineReconstructionService, Depends(get_timeline_service)]
 ConflictSvc = Annotated[ConflictDetectionService, Depends(get_conflict_service)]
 QuestionSvc = Annotated[QuestionGenerationService, Depends(get_question_service)]
+SttSvc = Annotated[SpeechToTextService, Depends(get_stt_service)]
+
