@@ -17,6 +17,10 @@ from app.core.ai.prompts.event_extraction_v2 import (
     EVENT_EXTRACTION_SYSTEM_PROMPT,
     EVENT_EXTRACTION_USER_PROMPT,
 )
+from app.core.ai.prompts.timeline_reconstruction_v2 import (
+    TIMELINE_RECONSTRUCTION_SYSTEM_PROMPT,
+    TIMELINE_RECONSTRUCTION_USER_PROMPT,
+)
 
 
 class PromptRegistry:
@@ -47,13 +51,16 @@ class PromptRegistry:
         # ── Event extraction v2 (production prompt) ──────────────────────
         "event_extraction_v2": EVENT_EXTRACTION_USER_PROMPT,
 
-        # ── Timeline reconstruction ──────────────────────────────────────
+        # ── Timeline reconstruction (LEGACY — use v2 for production) ────
         "timeline_alignment_v1": (
             "You are given a set of events from multiple testimonies. "
             "Order them chronologically, resolve ambiguous timestamps using context, "
             "and return a unified JSON timeline.\n\n"
             "EVENTS:\n$events_json\n\nTIMELINE JSON:"
         ),
+
+        # ── Timeline reconstruction v2 (production prompt) ───────────────
+        "timeline_reconstruction_v2": TIMELINE_RECONSTRUCTION_USER_PROMPT,
 
         # ── Conflict detection ───────────────────────────────────────────
         "conflict_detection_v1": (
@@ -84,6 +91,7 @@ class PromptRegistry:
     # System prompts live separately — not all tasks need one
     _system_prompts: dict[str, str] = {
         "event_extraction_v2": EVENT_EXTRACTION_SYSTEM_PROMPT,
+        "timeline_reconstruction_v2": TIMELINE_RECONSTRUCTION_SYSTEM_PROMPT,
     }
 
     def get(self, key: str) -> str:
