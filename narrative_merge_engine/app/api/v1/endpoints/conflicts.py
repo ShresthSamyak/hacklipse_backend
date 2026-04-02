@@ -4,6 +4,7 @@ Conflict detection & merge endpoints.
 Exposes:
   - POST /conflicts/timelines/{id}/detect       → full pipeline (load → detect → persist)
   - POST /conflicts/detect-preview               → preview from raw branches (no DB)
+  - POST /conflicts/detect-strict                → strict mode (zero hallucination, no DB)
   - GET  /conflicts/timelines/{id}               → list persisted conflicts
   - PATCH /conflicts/{id}/resolve                → mark a conflict as resolved
 """
@@ -15,6 +16,7 @@ from pydantic import BaseModel, Field
 
 from app.api.deps import ConflictSvc, CurrentUser
 from app.models.schemas.conflict_detection import ConflictDetectionResult
+from app.models.schemas.conflict_strict import StrictConflictResult
 from app.models.schemas.entities import ConflictRead, ConflictResolve
 
 router = APIRouter(prefix="/conflicts", tags=["Conflicts"])
@@ -23,7 +25,7 @@ router = APIRouter(prefix="/conflicts", tags=["Conflicts"])
 # ── Request schemas ──────────────────────────────────────────────────────────
 
 class DetectPreviewRequest(BaseModel):
-    """Request body for the preview conflict detection endpoint."""
+    """Request body for the preview and strict conflict detection endpoints."""
 
     branches: dict[str, list[dict]] = Field(
         ...,
@@ -90,6 +92,28 @@ async def detect_preview(
     _user: CurrentUser,
 ) -> ConflictDetectionResult:
     return await svc.detect_from_events_preview(payload.branches)
+
+
+@router.post(
+    "/detect-strict",
+    response_model=StrictConflictResult,
+    status_code=status.HTTP_200_OK,
+    summary="Strict-mode conflict detection (zero hallucination)",
+    description=(
+        "Runs zero-hallucination, zero-inference conflict detection. "
+        "The LLM acts as a pure comparison engine: it flags ONLY clear, "
+        "directly observable conflicts.  Returns a minimal JSON output "
+        "with no impact scoring, no conflict graph, and no reasoning. "
+        "Uses temperature=0 for deterministic output.  Suitable for "
+        "automated pipelines, CI checks, and forensic audit trails."
+    ),
+)
+async def detect_strict(
+    payload: DetectPreviewRequest,
+    svc: ConflictSvc,
+    _user: CurrentUser,
+) -> StrictConflictResult:
+    return await svc.detect_strict(payload.branches)
 
 
 @router.get(

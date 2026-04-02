@@ -604,3 +604,274 @@ class TestConflictDetectionService:
         assert diff.count(">>>>>>>") == 2
         assert "Witness_A" in diff
         assert "Witness_B" in diff
+
+
+# ============================================================================
+# Strict Mode Schema Tests
+# ============================================================================
+
+from app.models.schemas.conflict_strict import (
+    StrictConflict,
+    StrictConflictResult,
+    StrictConflictType,
+    StrictEvent,
+    StrictImpactLevel,
+    StrictNextQuestion,
+)
+
+
+class TestStrictConflict:
+    """Tests for the lean strict-mode conflict model."""
+
+    def test_basic_strict_conflict(self):
+        conflict = StrictConflict(
+            conflict_block="<<<<<<< Witness_A\nEntered at 9 PM\n=======\nEntered at 10 PM\n>>>>>>> Witness_B",
+            type="temporal",
+            impact="high",
+        )
+        assert conflict.type == StrictConflictType.TEMPORAL
+        assert conflict.impact == StrictImpactLevel.HIGH
+        assert "<<<<<<< Witness_A" in conflict.conflict_block
+
+    def test_type_normalisation(self):
+        for input_val, expected in [
+            ("temporal", StrictConflictType.TEMPORAL),
+            ("time", StrictConflictType.TEMPORAL),
+            ("logical", StrictConflictType.LOGICAL),
+            ("factual", StrictConflictType.LOGICAL),
+            ("spatial", StrictConflictType.SPATIAL),
+            ("location", StrictConflictType.SPATIAL),
+        ]:
+            conflict = StrictConflict(
+                conflict_block="<<<<<<< A\nx\n=======\ny\n>>>>>>> B",
+                type=input_val,
+                impact="medium",
+            )
+            assert conflict.type == expected, f"Failed for {input_val}"
+
+    def test_impact_normalisation(self):
+        for input_val, expected in [
+            ("low", StrictImpactLevel.LOW),
+            ("minor", StrictImpactLevel.LOW),
+            ("medium", StrictImpactLevel.MEDIUM),
+            ("moderate", StrictImpactLevel.MEDIUM),
+            ("high", StrictImpactLevel.HIGH),
+            ("critical", StrictImpactLevel.HIGH),
+        ]:
+            conflict = StrictConflict(
+                conflict_block="<<<<<<< A\nx\n=======\ny\n>>>>>>> B",
+                type="temporal",
+                impact=input_val,
+            )
+            assert conflict.impact == expected, f"Failed for {input_val}"
+
+
+class TestStrictConflictResult:
+    """Tests for the strict-mode top-level result."""
+
+    def test_empty_result(self):
+        result = StrictConflictResult()
+        assert result.conflict_count == 0
+        assert result.has_conflicts is False
+        assert result.render_diff() == ""
+
+    def test_result_properties(self):
+        result = StrictConflictResult(
+            confirmed_events=[
+                StrictEvent(event_id="e1", description="Heard noise"),
+            ],
+            conflicts=[
+                StrictConflict(
+                    conflict_block="<<<<<<< A\n9PM\n=======\n10PM\n>>>>>>> B",
+                    type="temporal",
+                    impact="high",
+                ),
+            ],
+            uncertain_events=[
+                StrictEvent(event_id="e2", description="Something happened after"),
+            ],
+            next_question=StrictNextQuestion(
+                question="What were you doing before you entered?",
+                reason="Resolves the temporal anchor conflict",
+            ),
+        )
+        assert result.conflict_count == 1
+        assert result.has_conflicts is True
+        assert len(result.confirmed_events) == 1
+        assert len(result.uncertain_events) == 1
+        assert result.next_question is not None
+        assert "<<<<<<< A" in result.render_diff()
+
+
+class TestStrictNextQuestion:
+    """Tests for the lean question model."""
+
+    def test_valid_question(self):
+        q = StrictNextQuestion(
+            question="What time did you arrive?",
+            reason="Resolves temporal conflict",
+        )
+        assert "arrive" in q.question
+
+    def test_min_length(self):
+        with pytest.raises(Exception):
+            StrictNextQuestion(question="Wh?", reason="No")
+
+
+# ============================================================================
+# Strict Mode Service Integration Tests
+# ============================================================================
+
+class TestStrictModeService:
+    """Tests for the strict-mode detection pipeline with mocked LLM."""
+
+    @pytest.fixture()
+    def strict_llm_response(self):
+        """Realistic strict-mode LLM response."""
+        output = {
+            "confirmed_events": [
+                {"event_id": "noise", "description": "Heard a loud noise"},
+            ],
+            "conflicts": [
+                {
+                    "conflict_block": "<<<<<<< Witness_A\nEntered at 9 PM\n=======\nEntered at 10 PM\n>>>>>>> Witness_B",
+                    "type": "temporal",
+                    "impact": "high",
+                },
+                {
+                    "conflict_block": "<<<<<<< Witness_A\nSaw a person near the table\n=======\nSaw no one in the room\n>>>>>>> Witness_B",
+                    "type": "logical",
+                    "impact": "high",
+                },
+            ],
+            "uncertain_events": [],
+            "next_question": {
+                "question": "What were you doing immediately before entering the room?",
+                "reason": "Entry time is the temporal anchor — resolving it reframes all downstream events",
+            },
+        }
+        return LLMResponse(
+            content=json.dumps(output),
+            model="gpt-4o",
+            usage={"prompt_tokens": 800, "completion_tokens": 400},
+        )
+
+    @pytest.fixture()
+    def strict_llm(self, strict_llm_response):
+        llm = MagicMock()
+        llm.complete = AsyncMock(return_value=strict_llm_response)
+        return llm
+
+    @pytest.fixture()
+    def mock_db(self):
+        return AsyncMock()
+
+    @pytest.fixture()
+    def sample_branches(self):
+        return {
+            "Witness_A": [
+                {"id": "a1", "description": "Entered at 9 PM", "time": "9 PM"},
+                {"id": "a2", "description": "Saw a person near the table"},
+                {"id": "a3", "description": "Heard a loud noise"},
+            ],
+            "Witness_B": [
+                {"id": "b1", "description": "Entered at 10 PM", "time": "10 PM"},
+                {"id": "b2", "description": "Saw no one in the room"},
+                {"id": "b3", "description": "Heard a loud noise"},
+            ],
+        }
+
+    @pytest.mark.asyncio
+    async def test_strict_detect(self, mock_db, strict_llm, sample_branches):
+        from app.services.conflict_detection_service import ConflictDetectionService
+
+        svc = ConflictDetectionService(db=mock_db, llm=strict_llm)
+        result = await svc.detect_strict(sample_branches)
+
+        assert isinstance(result, StrictConflictResult)
+        assert result.conflict_count == 2
+        assert result.has_conflicts is True
+        assert len(result.confirmed_events) == 1
+        assert result.next_question is not None
+
+        # Verify raw conflict blocks
+        for c in result.conflicts:
+            assert "<<<<<<<" in c.conflict_block
+            assert "=======" in c.conflict_block
+            assert ">>>>>>>" in c.conflict_block
+
+    @pytest.mark.asyncio
+    async def test_strict_diff_rendering(self, mock_db, strict_llm, sample_branches):
+        from app.services.conflict_detection_service import ConflictDetectionService
+
+        svc = ConflictDetectionService(db=mock_db, llm=strict_llm)
+        result = await svc.detect_strict(sample_branches)
+
+        diff = result.render_diff()
+        assert diff.count("<<<<<<<") == 2
+        assert "Witness_A" in diff
+        assert "Witness_B" in diff
+
+    @pytest.mark.asyncio
+    async def test_strict_deterministic_temperature(self, mock_db, strict_llm, sample_branches):
+        """Verify strict mode uses temperature=0."""
+        from app.services.conflict_detection_service import ConflictDetectionService
+
+        svc = ConflictDetectionService(db=mock_db, llm=strict_llm)
+        await svc.detect_strict(sample_branches)
+
+        call_args = strict_llm.complete.call_args
+        request = call_args[0][0]
+        assert request.temperature == 0.0
+
+    @pytest.mark.asyncio
+    async def test_strict_fallback_on_failure(self, mock_db, sample_branches):
+        """Strict mode should fallback to uncertain events on total failure."""
+        bad_response = LLMResponse(
+            content="NOT JSON AT ALL",
+            model="gpt-4o",
+            usage={},
+        )
+        llm = MagicMock()
+        llm.complete = AsyncMock(return_value=bad_response)
+
+        from app.services.conflict_detection_service import ConflictDetectionService
+
+        svc = ConflictDetectionService(db=mock_db, llm=llm)
+        result = await svc.detect_strict(sample_branches)
+
+        assert result.conflict_count == 0
+        assert result.has_conflicts is False
+        assert len(result.uncertain_events) > 0
+        assert result.next_question is None
+
+    @pytest.mark.asyncio
+    async def test_strict_no_conflicts(self, mock_db, sample_branches):
+        """When timelines agree, strict mode returns empty conflicts."""
+        output = {
+            "confirmed_events": [
+                {"event_id": "e1", "description": "Event 1"},
+                {"event_id": "e2", "description": "Event 2"},
+            ],
+            "conflicts": [],
+            "uncertain_events": [],
+            "next_question": None,
+        }
+        response = LLMResponse(
+            content=json.dumps(output),
+            model="gpt-4o",
+            usage={},
+        )
+        llm = MagicMock()
+        llm.complete = AsyncMock(return_value=response)
+
+        from app.services.conflict_detection_service import ConflictDetectionService
+
+        svc = ConflictDetectionService(db=mock_db, llm=llm)
+        result = await svc.detect_strict(sample_branches)
+
+        assert result.conflict_count == 0
+        assert result.has_conflicts is False
+        assert len(result.confirmed_events) == 2
+        assert result.next_question is None
+

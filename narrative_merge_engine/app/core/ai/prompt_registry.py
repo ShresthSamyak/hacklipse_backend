@@ -25,6 +25,10 @@ from app.core.ai.prompts.conflict_detection_v2 import (
     CONFLICT_DETECTION_SYSTEM_PROMPT,
     CONFLICT_DETECTION_USER_PROMPT,
 )
+from app.core.ai.prompts.conflict_detection_strict import (
+    CONFLICT_STRICT_SYSTEM_PROMPT,
+    CONFLICT_STRICT_USER_PROMPT,
+)
 
 
 class PromptRegistry:
@@ -77,6 +81,9 @@ class PromptRegistry:
         # ── Conflict detection v2 (production prompt) ────────────────────
         "conflict_detection_v2": CONFLICT_DETECTION_USER_PROMPT,
 
+        # ── Conflict detection strict (zero-hallucination mode) ───────────
+        "conflict_detection_strict": CONFLICT_STRICT_USER_PROMPT,
+
         # ── Question generation ──────────────────────────────────────────
         "question_generation_v1": (
             "Based on the conflicts and gaps in the timeline below, "
@@ -100,6 +107,7 @@ class PromptRegistry:
         "event_extraction_v2": EVENT_EXTRACTION_SYSTEM_PROMPT,
         "timeline_reconstruction_v2": TIMELINE_RECONSTRUCTION_SYSTEM_PROMPT,
         "conflict_detection_v2": CONFLICT_DETECTION_SYSTEM_PROMPT,
+        "conflict_detection_strict": CONFLICT_STRICT_SYSTEM_PROMPT,
     }
 
     def get(self, key: str) -> str:

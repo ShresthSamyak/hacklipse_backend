@@ -74,6 +74,12 @@ from app.models.schemas.conflict_detection import (
     NextBestQuestion,
 )
 from app.models.schemas.entities import ConflictRead, ConflictResolve
+from app.models.schemas.conflict_strict import (
+    StrictConflict,
+    StrictConflictResult,
+    StrictEvent,
+    StrictNextQuestion,
+)
 from app.repositories.entity_repos import ConflictRepository, TimelineRepository
 
 logger = get_logger(__name__)
@@ -388,6 +394,154 @@ class ConflictDetectionService:
             {"is_resolved": True, "resolution_notes": payload.resolution_notes},
         )
         return ConflictRead.model_validate(conflict)
+
+    async def detect_strict(
+        self,
+        branches: dict[str, list[dict]],
+    ) -> StrictConflictResult:
+        """
+        Strict mode: zero-hallucination, zero-inference, deterministic.
+
+        Uses:
+          - conflict_detection_strict prompt
+          - temperature=0
+          - lean StrictConflictResult schema
+          - no impact scoring, no graph, no reasoning fields
+          - max 2 retries on validation failure
+
+        Suitable for automated pipelines, CI checks, and audit trails.
+        """
+        start_time = time.monotonic()
+
+        for attempt in range(_MAX_VALIDATION_RETRIES + 1):
+            try:
+                result = await self._strict_detection_pass(
+                    branches=branches,
+                    is_retry=attempt > 0,
+                )
+                elapsed_ms = round((time.monotonic() - start_time) * 1000, 1)
+                logger.info(
+                    "Strict conflict detection completed",
+                    elapsed_ms=elapsed_ms,
+                    conflicts=result.conflict_count,
+                    confirmed=len(result.confirmed_events),
+                    uncertain=len(result.uncertain_events),
+                )
+                return result
+            except (ValidationError, Exception) as exc:
+                if attempt < _MAX_VALIDATION_RETRIES:
+                    logger.warning(
+                        "Strict detection validation failed — retrying",
+                        attempt=attempt + 1,
+                        error=str(exc),
+                    )
+                    continue
+                logger.error(
+                    "Strict detection failed after all retries",
+                    error=str(exc),
+                )
+                return self._build_strict_fallback(branches)
+
+        return self._build_strict_fallback(branches)
+
+    async def _strict_detection_pass(
+        self,
+        *,
+        branches: dict[str, list[dict]],
+        is_retry: bool,
+    ) -> StrictConflictResult:
+        """Single strict-mode LLM call."""
+        prompt_key = "conflict_detection_strict"
+        branches_json = _prepare_branches_for_prompt(branches)
+        user_prompt = prompt_registry.render(prompt_key, branches_json=branches_json)
+        system_prompt = prompt_registry.get_system_prompt(prompt_key)
+
+        if is_retry:
+            user_prompt += (
+                "\n\n--- RETRY: Your previous output was invalid JSON. "
+                "Return ONLY a raw JSON object.  No markdown fences.  "
+                "No text before or after the JSON."
+            )
+
+        messages: list[LLMMessage] = []
+        if system_prompt:
+            messages.append(LLMMessage(role="system", content=system_prompt))
+        messages.append(LLMMessage(role="user", content=user_prompt))
+
+        request = LLMRequest(
+            messages=messages,
+            temperature=0.0,  # deterministic
+            max_tokens=4096,  # strict mode is lean
+        )
+
+        response = await self.llm.complete(
+            request, task_name="conflict_detection_strict"
+        )
+
+        raw = extract_json(response.content)
+
+        if not isinstance(raw, dict):
+            raise ValidationError(
+                "Strict mode: expected a JSON object",
+                detail={"actual_type": type(raw).__name__},
+            )
+
+        return self._parse_strict_output(raw)
+
+    def _parse_strict_output(self, raw: dict) -> StrictConflictResult:
+        """Parse raw LLM output into the lean strict schema."""
+
+        # Confirmed events
+        confirmed_raw = raw.get("confirmed_events", [])
+        confirmed, _ = validate_events(confirmed_raw, StrictEvent)
+
+        # Conflicts
+        conflicts_raw = raw.get("conflicts", [])
+        conflicts, _ = validate_events(conflicts_raw, StrictConflict)
+
+        # Uncertain events
+        uncertain_raw = raw.get("uncertain_events", [])
+        uncertain, _ = validate_events(uncertain_raw, StrictEvent)
+
+        # Next question
+        nq_raw = raw.get("next_question")
+        next_question: StrictNextQuestion | None = None
+        if nq_raw and isinstance(nq_raw, dict):
+            try:
+                next_question = StrictNextQuestion.model_validate(nq_raw)
+            except Exception as exc:
+                logger.warning(
+                    "Strict mode: next_question validation failed",
+                    error=str(exc),
+                )
+
+        return StrictConflictResult(
+            confirmed_events=confirmed,
+            conflicts=conflicts,
+            uncertain_events=uncertain,
+            next_question=next_question,
+        )
+
+    def _build_strict_fallback(
+        self, branches: dict[str, list[dict]]
+    ) -> StrictConflictResult:
+        """Fallback for total strict-mode failure."""
+        logger.error("Building strict-mode fallback — no analysis available")
+        uncertain: list[StrictEvent] = []
+        for _label, events in branches.items():
+            for e in events:
+                uncertain.append(
+                    StrictEvent(
+                        event_id=e.get("id", str(uuid.uuid4())),
+                        description=e.get("description", "Unknown event"),
+                    )
+                )
+        return StrictConflictResult(
+            confirmed_events=[],
+            conflicts=[],
+            uncertain_events=uncertain,
+            next_question=None,
+        )
 
     # ── Internal pipeline ────────────────────────────────────────────────────
 
