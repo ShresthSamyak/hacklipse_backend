@@ -41,22 +41,47 @@ class Settings(BaseSettings):
     DATABASE_URL: PostgresDsn
     DATABASE_POOL_SIZE: int = 10
     DATABASE_MAX_OVERFLOW: int = 20
-    DATABASE_ECHO: bool = False  # set True for SQL query logging in dev
+    DATABASE_ECHO: bool = False
 
     # ── Redis ────────────────────────────────────────────────────────────────
     REDIS_URL: RedisDsn = Field(default="redis://localhost:6379/0")  # type: ignore[assignment]
 
-    # ── LLM (provider-agnostic) ───────────────────────────────────────────────
-    LLM_PROVIDER: Literal["openai", "anthropic", "gemini", "azure_openai", "custom"] = "openai"
+    # ── Primary LLM (provider-agnostic) ──────────────────────────────────────
+    LLM_PROVIDER: Literal["openai", "anthropic", "gemini", "azure_openai", "groq", "custom"] = "groq"
     LLM_API_KEY: str = ""
-    LLM_MODEL: str = "gpt-4o"
-    LLM_BASE_URL: str | None = None       # custom proxy / Azure endpoint
+    LLM_MODEL: str = "llama3-70b-8192"
+    LLM_BASE_URL: str | None = None
     LLM_TIMEOUT_SECONDS: int = 60
-    LLM_MAX_RETRIES: int = 3
+    LLM_MAX_RETRIES: int = 2
+
+    # ── Fast / lightweight LLM (optional) ────────────────────────────────────
+    # When set, the orchestrator routes lightweight tasks here.
+    # When blank, falls back to the primary LLM.
+    FAST_LLM_PROVIDER: str = ""          # e.g. "groq", "gemini"
+    FAST_LLM_API_KEY: str = ""           # leave blank to reuse LLM_API_KEY
+    FAST_LLM_MODEL: str = ""             # e.g. "gemma2-9b-it"
+
+    # ── Speech-to-Text (ASR) ──────────────────────────────────────────────────
+    ASR_PROVIDER: str = "groq"           # groq | openai | custom
+    ASR_MODEL: str = "whisper-large-v3-turbo"
+    ASR_LANGUAGE: str = ""               # ISO 639-1; blank = auto-detect
+    ASR_MAX_FILE_BYTES: int = 26_214_400  # 25 MB
 
     # ── Logging ─────────────────────────────────────────────────────────────
     LOG_LEVEL: str = "INFO"
     LOG_FORMAT: Literal["json", "console"] = "json"
+
+    # ── Convenience helpers ──────────────────────────────────────────────────
+
+    @property
+    def fast_llm_enabled(self) -> bool:
+        """True if a separate fast LLM is configured."""
+        return bool(self.FAST_LLM_PROVIDER and self.FAST_LLM_MODEL)
+
+    @property
+    def fast_llm_api_key(self) -> str:
+        """Return the fast LLM key, falling back to the primary key."""
+        return self.FAST_LLM_API_KEY or self.LLM_API_KEY
 
 
 @lru_cache(maxsize=1)
