@@ -21,6 +21,10 @@ from app.core.ai.prompts.timeline_reconstruction_v2 import (
     TIMELINE_RECONSTRUCTION_SYSTEM_PROMPT,
     TIMELINE_RECONSTRUCTION_USER_PROMPT,
 )
+from app.core.ai.prompts.conflict_detection_v2 import (
+    CONFLICT_DETECTION_SYSTEM_PROMPT,
+    CONFLICT_DETECTION_USER_PROMPT,
+)
 
 
 class PromptRegistry:
@@ -62,13 +66,16 @@ class PromptRegistry:
         # ── Timeline reconstruction v2 (production prompt) ───────────────
         "timeline_reconstruction_v2": TIMELINE_RECONSTRUCTION_USER_PROMPT,
 
-        # ── Conflict detection ───────────────────────────────────────────
+        # ── Conflict detection (LEGACY — use v2 for production) ────────
         "conflict_detection_v1": (
             "Identify contradictions between the following events from different testimonies. "
             "Return a JSON array of conflicts, each with keys: "
             "event_a_id, event_b_id, conflict_type, description, severity (low|medium|high).\n\n"
             "EVENTS:\n$events_json\n\nCONFLICTS JSON:"
         ),
+
+        # ── Conflict detection v2 (production prompt) ────────────────────
+        "conflict_detection_v2": CONFLICT_DETECTION_USER_PROMPT,
 
         # ── Question generation ──────────────────────────────────────────
         "question_generation_v1": (
@@ -92,6 +99,7 @@ class PromptRegistry:
     _system_prompts: dict[str, str] = {
         "event_extraction_v2": EVENT_EXTRACTION_SYSTEM_PROMPT,
         "timeline_reconstruction_v2": TIMELINE_RECONSTRUCTION_SYSTEM_PROMPT,
+        "conflict_detection_v2": CONFLICT_DETECTION_SYSTEM_PROMPT,
     }
 
     def get(self, key: str) -> str:
