@@ -6,9 +6,15 @@ No value is ever hard-coded here.
 
 from functools import lru_cache
 from typing import Literal
+import os
 
+from dotenv import load_dotenv
 from pydantic import AnyHttpUrl, Field, PostgresDsn, RedisDsn, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+# Optional fallback using python-dotenv to ensure variables load correctly
+# This catches situations where Pydantic settings might struggle defining relative pathing
+load_dotenv(".env")
 
 
 class Settings(BaseSettings):
@@ -24,14 +30,31 @@ class Settings(BaseSettings):
     DEBUG: bool = False
     PROJECT_NAME: str = "Narrative Merge Engine"
     API_V1_PREFIX: str = "/api/v1"
-    ALLOWED_ORIGINS: list[str] = Field(default=["http://localhost:3000"])
+    ALLOWED_ORIGINS: list[str] | str = Field(default=["http://localhost:3000"])
 
     @field_validator("ALLOWED_ORIGINS", mode="before")
     @classmethod
-    def parse_origins(cls, v: str | list) -> list[str]:
+    def parse_origins(cls, v: str | list | None) -> list[str]:
+        if not v:
+            return []
+        
         if isinstance(v, str):
-            return [o.strip() for o in v.split(",")]
-        return v
+            # 1. Safely handle JSON strings if provided in .env
+            if v.startswith("[") and v.endswith("]"):
+                import json
+                try:
+                    parsed = json.loads(v)
+                    if isinstance(parsed, list):
+                        return [str(o).strip() for o in parsed if str(o).strip()]
+                except json.JSONDecodeError:
+                    pass
+            # 2. Hande standard comma-separated strings safely
+            return [o.strip() for o in v.split(",") if o.strip()]
+            
+        if isinstance(v, list):
+            return [str(o).strip() for o in v if str(o).strip()]
+            
+        return []
 
     # ── Security ─────────────────────────────────────────────────────────────
     SECRET_KEY: str = "CHANGE_ME"
@@ -49,7 +72,8 @@ class Settings(BaseSettings):
     # ── Primary LLM (provider-agnostic) ──────────────────────────────────────
     LLM_PROVIDER: Literal["openai", "anthropic", "gemini", "azure_openai", "groq", "custom"] = "groq"
     LLM_API_KEY: str = ""
-    LLM_MODEL: str = "llama3-70b-8192"
+    LLM_MODEL: str = "llama-3.3-70b-versatile"
+    LLM_TEMPERATURE: float = 0.0
     LLM_BASE_URL: str | None = None
     LLM_TIMEOUT_SECONDS: int = 60
     LLM_MAX_RETRIES: int = 2

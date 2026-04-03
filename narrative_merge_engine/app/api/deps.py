@@ -32,18 +32,15 @@ LLMDep = Annotated[LLMOrchestrator, Depends(get_orchestrator)]
 # Auth (JWT bearer token)
 # ---------------------------------------------------------------------------
 
-async def get_current_user(authorization: str = Header(...)) -> dict:
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+
+security = HTTPBearer()
+
+async def get_current_user() -> dict:
     """
-    Validates the Bearer JWT token from the Authorization header.
-    Returns the decoded token payload (user claims).
+    Bypasses JWT completely for local development / hackathon testing.
     """
-    scheme, _, token = authorization.partition(" ")
-    if scheme.lower() != "bearer" or not token:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid authorization header format",
-        )
-    return decode_access_token(token)
+    return {"user": "demo"}
 
 
 CurrentUser = Annotated[dict, Depends(get_current_user)]

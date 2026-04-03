@@ -232,16 +232,34 @@ class DemoPipeline:
 
         # ── Stage 2: Event Extraction ─────────────────────────────────────────
         if branches_override:
-            # Multi-witness mode: treat each value as separate testimony text
-            events_by_branch: dict[str, list[dict]] = {}
-            for label, branch_text in branches_override.items():
-                branch_events = await self._run_extraction(
-                    result, text=branch_text, demo_mode=demo_mode
-                )
-                events_by_branch[label] = [
-                    _event_to_dict(e) for e in branch_events
+            # Multi-witness mode: extract from all branches CONCURRENTLY.
+            # Each branch is isolated — a failure returns [] + appends an error,
+            # it never cancels sibling branches.
+            labels = list(branches_override.keys())
+            texts  = list(branches_override.values())
+
+            branch_event_lists = await asyncio.gather(
+                *[
+                    self._run_extraction_branch(
+                        result, label=label, text=text, demo_mode=demo_mode
+                    )
+                    for label, text in zip(labels, texts)
                 ]
+            )
+
+            events_by_branch: dict[str, list[dict]] = {
+                label: [_event_to_dict(e) for e in events]
+                for label, events in zip(labels, branch_event_lists)
+            }
             all_events = [e for events in events_by_branch.values() for e in events]
+
+            logger.info(
+                "Multi-witness extraction complete (concurrent)",
+                pipeline_id=result.pipeline_id,
+                branch_count=len(labels),
+                total_events=len(all_events),
+                per_branch={lbl: len(evts) for lbl, evts in events_by_branch.items()},
+            )
         else:
             extracted_events = await self._run_extraction(
                 result, text=result.transcript, demo_mode=demo_mode
@@ -440,6 +458,49 @@ class DemoPipeline:
                 return _text_to_fallback_events(text)
 
         return []
+
+    async def _run_extraction_branch(
+        self,
+        result: PipelineResult,
+        *,
+        label: str,
+        text: str,
+        demo_mode: bool,
+    ) -> list[ExtractedEvent]:
+        """
+        Thin wrapper around `_run_extraction` for use in `asyncio.gather`.
+
+        Adds per-branch logging and isolates exceptions so a single branch
+        failure does NOT cancel sibling coroutines.
+        """
+        logger.info(
+            "Branch extraction started",
+            pipeline_id=result.pipeline_id,
+            branch=label,
+            text_length=len(text),
+        )
+        try:
+            events = await self._run_extraction(result, text=text, demo_mode=demo_mode)
+            logger.info(
+                "Branch extraction complete",
+                pipeline_id=result.pipeline_id,
+                branch=label,
+                event_count=len(events),
+            )
+            return events
+        except Exception as exc:
+            # Belt-and-suspenders: _run_extraction already catches, but protect
+            # gather() from unexpected leaks.
+            logger.error(
+                "Branch extraction unhandled error",
+                pipeline_id=result.pipeline_id,
+                branch=label,
+                error=str(exc),
+            )
+            result.errors.append(f"Branch '{label}' extraction failed: {exc}")
+            _downgrade_status(result)
+            return []
+
 
     async def _run_timeline(
         self,
@@ -651,6 +712,14 @@ def _build_trivial_timeline(events: list[dict]) -> dict:
         "temporal_links": [],
         "metadata": {"fast_preview": True},
     }
+
+
+def _strict_result_to_dict(conflicts: StrictConflictResult) -> dict:
+    """Convert StrictConflictResult to dict, explicitly including computed @property fields."""
+    base = conflicts.model_dump()
+    base["conflict_count"] = conflicts.conflict_count
+    base["has_conflicts"] = conflicts.has_conflicts
+    return base
 
 
 # ─── Status helpers ───────────────────────────────────────────────────────────

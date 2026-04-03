@@ -61,6 +61,18 @@ _PRIMARY_ONLY_TASKS: frozenset[str] = frozenset({
     "conflict_detection_strict",
 })
 
+# Tasks that MUST receive structured JSON output.
+# The orchestrator will automatically inject response_format={"type":"json_object"}
+# for these tasks — no service-level boilerplate needed.
+# Only applies when the provider supports JSON mode (Groq/OpenAI-compatible).
+_JSON_MODE_TASKS: frozenset[str] = frozenset({
+    "event_extraction_v2",
+    "timeline_reconstruction_v2",
+    "conflict_detection_v2",
+    "conflict_detection_strict",
+    "question_generation_v1",
+})
+
 
 def _is_fast_task(task_name: str) -> bool:
     """True if this task should be routed to the fast LLM when available."""
@@ -185,12 +197,25 @@ class LLMOrchestrator:
         effective_model = request.model or default_model
         request.model = effective_model
 
+        # ── Auto JSON mode ──────────────────────────────────────────────────
+        # For tasks that require deterministic structured output, instruct the
+        # provider to enforce JSON formatting at the API level.
+        # We skip if the caller has already set a response_format (explicit wins).
+        if task_name in _JSON_MODE_TASKS and "response_format" not in request.extra:
+            request.extra["response_format"] = {"type": "json_object"}
+            logger.debug(
+                "JSON mode auto-injected",
+                task=task_name,
+                model=effective_model,
+            )
+
         logger.info(
             "LLM request",
             task=task_name,
             model=effective_model,
             messages=len(request.messages),
             fast_route=provider is self._fast_provider,
+            json_mode="response_format" in request.extra,
         )
 
         response = await self._complete_with_retry(request, provider)
@@ -202,6 +227,7 @@ class LLMOrchestrator:
             usage=response.usage,
         )
         return response
+
 
     async def stream(
         self,
