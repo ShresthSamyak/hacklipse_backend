@@ -30,6 +30,7 @@ from app.core.ai.prompts.conflict_detection_strict import (
     CONFLICT_STRICT_USER_PROMPT,
 )
 from app.core.ai.prompts.testimony_analysis_v2 import PROMPT_TEMPLATE as TESTIMONY_ANALYSIS_V2_PROMPT
+from app.core.ai.prompts.report_generation import REPORT_GENERATION_TEMPLATE
 
 
 
@@ -104,6 +105,9 @@ class PromptRegistry:
             "Be factual and neutral.\n\n"
             "TESTIMONIES:\n$testimonies_json\n\nMERGED NARRATIVE:"
         ),
+
+        # ── Final Report ─────────────────────────────────────────────────
+        "report_generation": REPORT_GENERATION_TEMPLATE,
     }
 
     # System prompts live separately — not all tasks need one

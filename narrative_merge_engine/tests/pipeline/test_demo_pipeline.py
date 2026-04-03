@@ -137,15 +137,12 @@ def _make_pipeline(
         stt_svc=stt_svc,
     )
 
-    # Patch the standalone function natively within the DemoPipeline namespace
-    # since it is imported and used directly without DI in the current structure
-    patcher = patch(
+    # Patch testimony analysis — avoids real Groq calls
+    patcher_testimony = patch(
         "app.services.demo_pipeline.analyze_testimony_sensitivity",
         new_callable=AsyncMock
     )
-    mock_analyze = patcher.start()
-    
-    # Needs to return a TestimonyAnalysisResult schema instead of None
+    mock_analyze = patcher_testimony.start()
     from app.models.schemas.testimony_analysis import TestimonyAnalysisResult, EmotionCategory, ConfidenceLevel
     mock_analyze.return_value = TestimonyAnalysisResult(
         emotion=EmotionCategory.NEUTRAL,
@@ -153,8 +150,25 @@ def _make_pipeline(
         confidence_level=ConfidenceLevel.MEDIUM
     )
 
+    # Patch report generation — avoids real primary LLM calls
+    patcher_report = patch(
+        "app.services.demo_pipeline.generate_final_report",
+        new_callable=AsyncMock
+    )
+    mock_report = patcher_report.start()
+    from app.models.schemas.report import ReportGenerationResult
+    mock_report.return_value = ReportGenerationResult(
+        summary="Test summary.",
+        key_events=["Event A occurred.", "Event B followed."],
+        conflicts=[],
+        emotional_analysis="Witness appeared calm.",
+        uncertainty_analysis="No significant uncertainty detected.",
+        recommended_next_steps=["Review CCTV footage."],
+    )
+
     import atexit
-    atexit.register(patcher.stop)
+    atexit.register(patcher_testimony.stop)
+    atexit.register(patcher_report.stop)
 
     return pipeline
 

@@ -70,6 +70,7 @@ class PipelineResponse(BaseModel):
     events: list[dict]
     timeline: dict
     conflicts: dict
+    report: dict = {}
     status: str
     errors: list[str]
     stage_timings_ms: dict[str, float]

@@ -59,6 +59,7 @@ from typing import Any
 from app.core.logging import get_logger
 from app.models.schemas.conflict_strict import StrictConflictResult, StrictEvent
 from app.models.schemas.event_extraction import ExtractedEvent, ExtractionResult
+from app.models.schemas.report import ReportGenerationResult
 from app.models.schemas.timeline_reconstruction import (
     PlacementConfidence,
     TimelineEvent,
@@ -67,6 +68,7 @@ from app.models.schemas.timeline_reconstruction import (
 from app.models.schemas.testimony_analysis import TestimonyAnalysisResult
 from app.services.conflict_detection_service import ConflictDetectionService
 from app.services.event_extraction_service import EventExtractionService
+from app.services.report_generation_service import generate_final_report
 from app.services.speech_to_text_service import SpeechToTextService, TranscriptResult
 from app.services.timeline_reconstruction_service import TimelineReconstructionService
 from app.services.testimony_analysis_service import analyze_testimony_sensitivity
@@ -110,6 +112,7 @@ class PipelineResult:
     events: list[dict] = field(default_factory=list)
     timeline: dict = field(default_factory=dict)
     conflicts: dict = field(default_factory=dict)
+    report: dict = field(default_factory=dict)
 
     # Pipeline metadata
     status: PipelineStatus = PipelineStatus.SUCCESS
@@ -127,6 +130,7 @@ class PipelineResult:
             "events": self.events,
             "timeline": self.timeline,
             "conflicts": self.conflicts,
+            "report": self.report,
             "status": self.status.value,
             "errors": self.errors,
             "stage_timings_ms": self.stage_timings,
@@ -318,6 +322,17 @@ class DemoPipeline:
             result.errors.append("No branches available for conflict detection.")
 
         result.conflicts = _strict_result_to_dict(conflict_result)
+
+        # ── Stage 5: Final Investigative Report ──────────────────────────────
+        report_result = await self._run_report(
+            result,
+            transcript=result.transcript,
+            testimony_analysis=result.testimony_analysis,
+            events=result.events,
+            timeline=result.timeline,
+            conflicts=result.conflicts,
+        )
+        result.report = report_result.model_dump()
 
         # ── Finalize ─────────────────────────────────────────────────────────
         total_ms = round((time.monotonic() - pipeline_start) * 1000, 1)
@@ -635,6 +650,55 @@ class DemoPipeline:
 
         return StrictConflictResult()
 
+    async def _run_report(
+        self,
+        result: PipelineResult,
+        *,
+        transcript: str,
+        testimony_analysis: dict | None,
+        events: list[dict],
+        timeline: dict,
+        conflicts: dict,
+    ) -> ReportGenerationResult:
+        """Stage 5: Final Report Generation. Fully isolated."""
+        stage_start = time.monotonic()
+
+        try:
+            report: ReportGenerationResult = await asyncio.wait_for(
+                generate_final_report(
+                    transcript=transcript,
+                    testimony_analysis=testimony_analysis or {},
+                    events=events,
+                    timeline=timeline,
+                    conflicts=conflicts,
+                ),
+                timeout=20, # Wait longer for full report synthesis
+            )
+            elapsed = round((time.monotonic() - stage_start) * 1000, 1)
+            result.stage_timings["report_ms"] = elapsed
+
+            logger.info(
+                "Report built",
+                pipeline_id=result.pipeline_id,
+                elapsed_ms=elapsed,
+            )
+            return report
+
+        except asyncio.TimeoutError:
+            logger.error("Report generation timed out", pipeline_id=result.pipeline_id)
+            result.errors.append("Report generation timed out — using minimal summary.")
+            _downgrade_status(result)
+            return ReportGenerationResult.fallback()
+
+        except Exception as exc:
+            logger.error(
+                "Report generation failed",
+                pipeline_id=result.pipeline_id,
+                error=str(exc),
+            )
+            result.errors.append(f"Report generation error: {exc}")
+            _downgrade_status(result)
+            return ReportGenerationResult.fallback()
 
 # ─── Fallback builders ────────────────────────────────────────────────────────
 
