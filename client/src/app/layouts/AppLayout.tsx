@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from '@/widgets/landing/Sidebar';
+import { useInvestigationStore } from '@/app/store/investigationStore';
 
 const Header: React.FC = () => {
   return (
@@ -23,6 +24,14 @@ const Header: React.FC = () => {
 };
 
 export const AppLayout: React.FC = () => {
+  const { isActive, loadSample } = useInvestigationStore();
+
+  useEffect(() => {
+    if (!isActive) {
+      loadSample();
+    }
+  }, [isActive, loadSample]);
+
   return (
     <div className="antialiased selection:bg-primary/30 selection:text-on-background min-h-screen bg-background text-on-background font-body flex">
       <Header />

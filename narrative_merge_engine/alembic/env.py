@@ -18,7 +18,7 @@ import app.models.orm.timeline_conflict_question  # noqa: F401
 from app.core.config import settings
 
 config = context.config
-config.set_main_option("sqlalchemy.url", str(settings.DATABASE_URL))
+config.set_main_option("sqlalchemy.url", str(settings.DATABASE_URL).replace("%", "%%"))
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
