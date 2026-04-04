@@ -40,7 +40,7 @@ export const TestimonyPanel: React.FC = () => {
               "{event.description}"
             </div>
             <div className="flex gap-1">
-              {event.actors.map((actor, idx) => (
+              {event.actors?.map((actor, idx) => (
                 <span key={idx} className="text-[8px] font-label uppercase bg-surface-variant px-1 text-gray-400">@{actor}</span>
               ))}
             </div>

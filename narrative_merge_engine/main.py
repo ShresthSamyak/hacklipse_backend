@@ -66,10 +66,13 @@ def create_application() -> FastAPI:
 
     # ── Middleware (order matters — applied bottom-up) ──────────────────────
     app.add_middleware(GZipMiddleware, minimum_size=1024)
+    
+    # Robust CORS for hackathon development
+    allow_all = "*" in settings.ALLOWED_ORIGINS or settings.ALLOWED_ORIGINS == "*"
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.ALLOWED_ORIGINS,
-        allow_credentials=True,
+        allow_origins=["*"] if allow_all else settings.ALLOWED_ORIGINS,
+        allow_credentials=not allow_all, # credentials cannot be used with "*"
         allow_methods=["*"],
         allow_headers=["*"],
     )

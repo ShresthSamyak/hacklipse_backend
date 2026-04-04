@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const apiClient = axios.create({
-  // Vite proxy forwards /api/v1 to http://localhost:8000
+  // Directly hit the backend port 8000 (CORS handled by backend)
   baseURL: 'http://localhost:8000/api/v1',
   headers: {
     'Content-Type': 'application/json',
