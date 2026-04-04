@@ -55,6 +55,10 @@ class AuthorizationError(NarrativeMergeException):
     error_code = "FORBIDDEN"
 
 
+# Alias for convenience
+ForbiddenError = AuthorizationError
+
+
 class LLMProviderError(NarrativeMergeException):
     """Raised when the upstream LLM call fails after all retries."""
     status_code = status.HTTP_502_BAD_GATEWAY
