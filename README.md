@@ -8,7 +8,7 @@
 
 ## Overview
 
-The **Narrative Merge Engine** is a high-performance, async-first backend designed to reconstruct complex event timelines from fragmented witness testimonies. Using advanced LLM orchestration and clean architecture, it treats human memory like a distributed version control system — identifying conflicts, resolving temporal ambiguities, and merging divergent accounts into a single, unified narrative truth.
+The **Narrative Merge Engine** is a high-performance, async-first backend designed to reconstruct complex event timelines from fragmented witness testimonies. Using advanced LLM orchestration and clean architecture, it treats human memory like a distributed version control system — which helps in identifying conflicts, resolving temporal ambiguities, and merging divergent accounts into a single, unified narrative truth.
 
 ### Key Capabilities
 - **Decomposition**: Breaking down non-linear, multi-lingual (Hindi/English/Hinglish) prose into atomic events.
