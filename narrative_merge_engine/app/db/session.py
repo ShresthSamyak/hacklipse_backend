@@ -18,15 +18,23 @@ from app.core.config import settings
 # Engine
 # ---------------------------------------------------------------------------
 
-db_engine = create_async_engine(
-    str(settings.DATABASE_URL),
-    pool_size=settings.DATABASE_POOL_SIZE,
-    max_overflow=settings.DATABASE_MAX_OVERFLOW,
-    pool_pre_ping=True,            # heartbeat — drops stale connections
-    pool_recycle=3600,             # recycle connections every hour
-    echo=settings.DATABASE_ECHO,  # log SQL in dev
-    future=True,
-)
+_db_url = str(settings.DATABASE_URL)
+_is_sqlite = _db_url.startswith("sqlite")
+
+_engine_kwargs = {
+    "echo": settings.DATABASE_ECHO,
+    "future": True,
+}
+
+if not _is_sqlite:
+    _engine_kwargs.update({
+        "pool_size": settings.DATABASE_POOL_SIZE,
+        "max_overflow": settings.DATABASE_MAX_OVERFLOW,
+        "pool_pre_ping": True,
+        "pool_recycle": 3600,
+    })
+
+db_engine = create_async_engine(_db_url, **_engine_kwargs)
 
 # ---------------------------------------------------------------------------
 # Session factory

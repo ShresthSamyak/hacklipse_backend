@@ -1,0 +1,95 @@
+2026-04-04T23:55:29.4984107Z State: Starting, Action: EstablishingSiteNetworks, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-04T23:55:35.4176559Z State: Starting, Action: StartingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-04T23:55:35.4565958Z Container start method called.
+2026-04-04T23:55:35.5424937Z State: Starting, Action: PullingImage, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pulling image 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:55:35.5530515Z Establishing network.
+2026-04-04T23:55:35.5615591Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-04T23:55:35.9956740Z Container is starting.
+2026-04-04T23:55:36.0030705Z State: Starting, Action: MountingVolumes, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Mounting volumes for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:55:36.0039321Z Establishing user namespace if not established already.
+2026-04-04T23:55:36.0042985Z Establishing network if not established already.
+2026-04-04T23:55:36.0045249Z Mounting volumes.
+2026-04-04T23:55:36.0329480Z Nested mountpoint 
+2026-04-04T23:55:36.1905241Z Nested mountpoint volatile/logs
+2026-04-04T23:55:36.2330658Z Nested mountpoint 
+2026-04-04T23:55:36.3380812Z Nested mountpoint 
+2026-04-04T23:55:36.3761643Z Nested mountpoint 
+2026-04-04T23:55:37.0230843Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Finished pulling container image and mounting volumes for app-narrative-merge-asia. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-04T23:55:37.0297729Z Creating container.
+2026-04-04T23:55:37.0314221Z Creating pipes for streaming container io.
+2026-04-04T23:55:37.0395490Z Creating stdout named pipe at /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stdout_c61ceb2861ff42cf9f92fb8987e5fe71.
+2026-04-04T23:55:37.0416143Z Successfully created stdout named pipe at: /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stdout_c61ceb2861ff42cf9f92fb8987e5fe71.
+2026-04-04T23:55:37.0504487Z Opening named pipe /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stdout_c61ceb2861ff42cf9f92fb8987e5fe71 for reading in non-blocking mode.
+2026-04-04T23:55:37.0512518Z Successfully opened named pipe: /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stdout_c61ceb2861ff42cf9f92fb8987e5fe71.
+2026-04-04T23:55:37.0613806Z Successfully removed non-blocking flag from /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stdout_c61ceb2861ff42cf9f92fb8987e5fe71.
+2026-04-04T23:55:37.0803884Z Creating stderr named pipe at /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stderr_70d5fdd8ab004eb5948bc757c91c6207.
+2026-04-04T23:55:37.0809215Z Successfully created stderr named pipe at: /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stderr_70d5fdd8ab004eb5948bc757c91c6207.
+2026-04-04T23:55:37.0900959Z Opening named pipe /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stderr_70d5fdd8ab004eb5948bc757c91c6207 for reading in non-blocking mode.
+2026-04-04T23:55:37.0905378Z Successfully opened named pipe: /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stderr_70d5fdd8ab004eb5948bc757c91c6207.
+2026-04-04T23:55:37.0918737Z Successfully removed non-blocking flag from /podr/container/pipe/bd9817ffbf98_app-narrative-merge-asia/stderr_70d5fdd8ab004eb5948bc757c91c6207.
+2026-04-04T23:55:37.1460682Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-04T23:55:40.8090800Z Starting container: bd9817ffbf98_app-narrative-merge-asia.
+2026-04-04T23:55:41.4007458Z Starting watchers and probes.
+2026-04-04T23:55:41.6720819Z Starting metrics collection.
+2026-04-04T23:55:41.8179118Z Container is running.
+2026-04-04T23:55:41.8188289Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:55:42.9724008Z Container start method finished after 7513 ms.
+2026-04-04T23:55:43.0425458Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:55:43.0781017Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-04T23:56:54.7658541Z Container has finished running with exit code: 1.
+2026-04-04T23:56:54.7966320Z Container is terminating. Grace period: 5 seconds.
+2026-04-04T23:56:54.8660471Z Stop and delete container. Retry count = 0
+2026-04-04T23:56:54.8844043Z Stopping container: bd9817ffbf98_app-narrative-merge-asia.
+2026-04-04T23:56:55.2659540Z Deleting container: bd9817ffbf98_app-narrative-merge-asia. Retry count = 0
+2026-04-04T23:56:56.0608422Z Container spec TerminationMessagePolicy  path 
+2026-04-04T23:56:56.0906365Z Container is terminated. Total time elapsed: 1264 ms.
+2026-04-04T23:56:56.0999842Z Site container: app-narrative-merge-asia terminated during site startup.
+2026-04-04T23:56:56.1214814Z State: Stopping, Action: CancellingStartup, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:56:56.4398135Z Site startup probe failed after 73.1467949 seconds.
+2026-04-04T23:56:56.9494683Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:56:57.0572222Z Failed to start site. Revert by stopping site.
+2026-04-04T23:56:57.0994660Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:56:57.1588990Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:56:57.1778523Z Site: app-narrative-merge-asia stopped.
+2026-04-04T23:56:57.2198408Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:56:57.9645238Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:56:58.8522187Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:56:58 (UTC), DetailsLevel: ERR
+2026-04-04T23:56:59.9906301Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:56:58 (UTC), DetailsLevel: ERR
+2026-04-04T23:58:22.1383984Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:56:58 (UTC), DetailsLevel: ERR
+2026-04-04T23:58:26.6917715Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:56:58 (UTC), DetailsLevel: ERR
+2026-04-04T23:58:26.6923398Z Container start method called.
+2026-04-04T23:58:26.6925573Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:58:26.7669278Z Establishing network.
+2026-04-04T23:58:26.8649050Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-04T23:58:27.8632822Z Container is starting.
+2026-04-04T23:58:27.8634102Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:58:27.8635179Z Establishing user namespace if not established already.
+2026-04-04T23:58:27.8736929Z Establishing network if not established already.
+2026-04-04T23:58:27.8739488Z Mounting volumes.
+2026-04-04T23:58:27.8757968Z Nested mountpoint 
+2026-04-04T23:58:27.9135730Z Nested mountpoint volatile/logs
+2026-04-04T23:58:28.0134177Z Nested mountpoint 
+2026-04-04T23:58:28.0144216Z Nested mountpoint 
+2026-04-04T23:58:28.0973118Z Nested mountpoint 
+2026-04-04T23:58:29.8253263Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for app-narrative-merge-asia. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-04T23:58:29.8255435Z Creating container.
+2026-04-04T23:58:29.8257210Z Creating pipes for streaming container io.
+2026-04-04T23:58:29.8258828Z Creating stdout named pipe at /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stdout_28a6b9efabf04795ba5c469994bdd62d.
+2026-04-04T23:58:29.9071336Z Successfully created stdout named pipe at: /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stdout_28a6b9efabf04795ba5c469994bdd62d.
+2026-04-04T23:58:29.9073701Z Opening named pipe /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stdout_28a6b9efabf04795ba5c469994bdd62d for reading in non-blocking mode.
+2026-04-04T23:58:29.9075783Z Successfully opened named pipe: /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stdout_28a6b9efabf04795ba5c469994bdd62d.
+2026-04-04T23:58:29.9289261Z Successfully removed non-blocking flag from /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stdout_28a6b9efabf04795ba5c469994bdd62d.
+2026-04-04T23:58:29.9292909Z Creating stderr named pipe at /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stderr_4f5a972d867a4bbf8643c1b3cb847018.
+2026-04-04T23:58:29.9295964Z Successfully created stderr named pipe at: /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stderr_4f5a972d867a4bbf8643c1b3cb847018.
+2026-04-04T23:58:29.9363018Z Opening named pipe /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stderr_4f5a972d867a4bbf8643c1b3cb847018 for reading in non-blocking mode.
+2026-04-04T23:58:29.9366986Z Successfully opened named pipe: /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stderr_4f5a972d867a4bbf8643c1b3cb847018.
+2026-04-04T23:58:29.9368794Z Successfully removed non-blocking flag from /podr/container/pipe/adc793c7bb3e_app-narrative-merge-asia/stderr_4f5a972d867a4bbf8643c1b3cb847018.
+2026-04-04T23:58:29.9443646Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-04T23:58:34.4583175Z Starting container: adc793c7bb3e_app-narrative-merge-asia.
+2026-04-04T23:58:34.6578833Z Starting watchers and probes.
+2026-04-04T23:58:34.6883088Z Starting metrics collection.
+2026-04-04T23:58:34.7284857Z Container is running.
+2026-04-04T23:58:34.7457285Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:58:35.0499132Z Container start method finished after 8318 ms.
+2026-04-04T23:58:35.0507629Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:58:35.0509080Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:56:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO

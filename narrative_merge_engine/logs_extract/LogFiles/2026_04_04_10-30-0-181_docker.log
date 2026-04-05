@@ -1,0 +1,385 @@
+2026-04-04T23:46:08.1861281Z State: Starting, Action: EstablishingSiteNetworks, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-04T23:46:09.0748167Z State: Starting, Action: StartingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-04T23:46:09.0755506Z Container start method called.
+2026-04-04T23:46:09.0778465Z State: Starting, Action: PullingImage, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pulling image 10.1.0.5:13209/appsvc/python:3.10_20260203.2.tuxprod for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:46:09.0779884Z Establishing network.
+2026-04-04T23:46:09.0781169Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-04T23:46:09.3318938Z Container is starting.
+2026-04-04T23:46:09.3320380Z State: Starting, Action: MountingVolumes, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Mounting volumes for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:46:09.3321809Z Establishing user namespace if not established already.
+2026-04-04T23:46:09.3323248Z Establishing network if not established already.
+2026-04-04T23:46:09.3325051Z Mounting volumes.
+2026-04-04T23:46:09.3327898Z Nested mountpoint 
+2026-04-04T23:46:09.3379524Z Nested mountpoint volatile/logs
+2026-04-04T23:46:09.3542171Z Nested mountpoint 
+2026-04-04T23:46:09.3665590Z Nested mountpoint 
+2026-04-04T23:46:09.3673470Z Nested mountpoint 
+2026-04-04T23:46:09.9946018Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Finished pulling container image and mounting volumes for app-narrative-merge-asia. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-04T23:46:09.9948226Z Creating container.
+2026-04-04T23:46:09.9950752Z Creating pipes for streaming container io.
+2026-04-04T23:46:09.9952710Z Creating stdout named pipe at /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stdout_9a7e2819204e44f48e866724d2c25f7e.
+2026-04-04T23:46:09.9963501Z Successfully created stdout named pipe at: /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stdout_9a7e2819204e44f48e866724d2c25f7e.
+2026-04-04T23:46:09.9966855Z Opening named pipe /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stdout_9a7e2819204e44f48e866724d2c25f7e for reading in non-blocking mode.
+2026-04-04T23:46:09.9970111Z Successfully opened named pipe: /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stdout_9a7e2819204e44f48e866724d2c25f7e.
+2026-04-04T23:46:09.9973526Z Successfully removed non-blocking flag from /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stdout_9a7e2819204e44f48e866724d2c25f7e.
+2026-04-04T23:46:09.9981823Z Creating stderr named pipe at /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stderr_4428f81f35024ba5b405b778de803193.
+2026-04-04T23:46:09.9983844Z Successfully created stderr named pipe at: /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stderr_4428f81f35024ba5b405b778de803193.
+2026-04-04T23:46:09.9984994Z Opening named pipe /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stderr_4428f81f35024ba5b405b778de803193 for reading in non-blocking mode.
+2026-04-04T23:46:09.9986408Z Successfully opened named pipe: /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stderr_4428f81f35024ba5b405b778de803193.
+2026-04-04T23:46:09.9987771Z Successfully removed non-blocking flag from /podr/container/pipe/ff7132395f9a_app-narrative-merge-asia/stderr_4428f81f35024ba5b405b778de803193.
+2026-04-04T23:46:09.9989796Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-04T23:46:10.4022124Z Starting container: ff7132395f9a_app-narrative-merge-asia.
+2026-04-04T23:46:10.4320769Z Starting watchers and probes.
+2026-04-04T23:46:10.4333454Z Starting metrics collection.
+2026-04-04T23:46:10.4335469Z Container is running.
+2026-04-04T23:46:10.4336319Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:46:10.4561367Z Container start method finished after 1380 ms.
+2026-04-04T23:46:10.4564168Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:46:10.4602361Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-04T23:46:18.5216739Z Container has finished running with exit code: 1.
+2026-04-04T23:46:18.5272648Z Container is terminating. Grace period: 5 seconds.
+2026-04-04T23:46:18.5351221Z Stop and delete container. Retry count = 0
+2026-04-04T23:46:18.5363347Z Stopping container: ff7132395f9a_app-narrative-merge-asia.
+2026-04-04T23:46:18.5828484Z Deleting container: ff7132395f9a_app-narrative-merge-asia. Retry count = 0
+2026-04-04T23:46:18.7144493Z Container spec TerminationMessagePolicy  path 
+2026-04-04T23:46:18.7168597Z Container is terminated. Total time elapsed: 188 ms.
+2026-04-04T23:46:18.7170876Z Site container: app-narrative-merge-asia terminated during site startup.
+2026-04-04T23:46:18.7226055Z State: Stopping, Action: CancellingStartup, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:18.7418513Z Site startup probe failed after 8.2671294 seconds.
+2026-04-04T23:46:18.7997907Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:18.8103714Z Failed to start site. Revert by stopping site.
+2026-04-04T23:46:18.8159256Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:18.8201721Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:18.8218340Z Site: app-narrative-merge-asia stopped.
+2026-04-04T23:46:18.8319629Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:18.9478254Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:19.0170841Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:46:19 (UTC), DetailsLevel: ERR
+2026-04-04T23:46:19.0620133Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:46:19 (UTC), DetailsLevel: ERR
+2026-04-04T23:46:25.2371651Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:46:19 (UTC), DetailsLevel: ERR
+2026-04-04T23:46:25.7509136Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:46:19 (UTC), DetailsLevel: ERR
+2026-04-04T23:46:25.7518018Z Container start method called.
+2026-04-04T23:46:25.7518964Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.5:13209/appsvc/python:3.10_20260203.2.tuxprod for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:46:25.7520224Z Establishing network.
+2026-04-04T23:46:25.7521768Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-04T23:46:25.9899175Z Container is starting.
+2026-04-04T23:46:25.9900254Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:46:25.9901686Z Establishing user namespace if not established already.
+2026-04-04T23:46:25.9903069Z Establishing network if not established already.
+2026-04-04T23:46:25.9904445Z Mounting volumes.
+2026-04-04T23:46:25.9907168Z Nested mountpoint 
+2026-04-04T23:46:25.9931695Z Nested mountpoint volatile/logs
+2026-04-04T23:46:25.9962836Z Nested mountpoint 
+2026-04-04T23:46:25.9970281Z Nested mountpoint 
+2026-04-04T23:46:25.9976962Z Nested mountpoint 
+2026-04-04T23:46:26.1677157Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for app-narrative-merge-asia. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-04T23:46:26.1678644Z Creating container.
+2026-04-04T23:46:26.1680360Z Creating pipes for streaming container io.
+2026-04-04T23:46:26.1681762Z Creating stdout named pipe at /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stdout_f2e64b30ba99492bb8854c5b3aa09a2a.
+2026-04-04T23:46:26.1684391Z Successfully created stdout named pipe at: /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stdout_f2e64b30ba99492bb8854c5b3aa09a2a.
+2026-04-04T23:46:26.1686023Z Opening named pipe /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stdout_f2e64b30ba99492bb8854c5b3aa09a2a for reading in non-blocking mode.
+2026-04-04T23:46:26.1699297Z Successfully opened named pipe: /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stdout_f2e64b30ba99492bb8854c5b3aa09a2a.
+2026-04-04T23:46:26.1700721Z Successfully removed non-blocking flag from /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stdout_f2e64b30ba99492bb8854c5b3aa09a2a.
+2026-04-04T23:46:26.1702669Z Creating stderr named pipe at /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stderr_2fcd3b3018b049acabc683e050475f7d.
+2026-04-04T23:46:26.1704774Z Successfully created stderr named pipe at: /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stderr_2fcd3b3018b049acabc683e050475f7d.
+2026-04-04T23:46:26.1706033Z Opening named pipe /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stderr_2fcd3b3018b049acabc683e050475f7d for reading in non-blocking mode.
+2026-04-04T23:46:26.1707488Z Successfully opened named pipe: /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stderr_2fcd3b3018b049acabc683e050475f7d.
+2026-04-04T23:46:26.1708700Z Successfully removed non-blocking flag from /podr/container/pipe/024db73f0ed4_app-narrative-merge-asia/stderr_2fcd3b3018b049acabc683e050475f7d.
+2026-04-04T23:46:26.1710483Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-04T23:46:26.6106905Z Starting container: 024db73f0ed4_app-narrative-merge-asia.
+2026-04-04T23:46:26.6322197Z Starting watchers and probes.
+2026-04-04T23:46:26.6335137Z Starting metrics collection.
+2026-04-04T23:46:26.6344449Z Container is running.
+2026-04-04T23:46:26.6350278Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:46:26.6656538Z Container start method finished after 913 ms.
+2026-04-04T23:46:26.6659234Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:46:26.6659845Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-04T23:46:33.9356971Z Container has finished running with exit code: 1.
+2026-04-04T23:46:33.9358101Z Container is terminating. Grace period: 5 seconds.
+2026-04-04T23:46:33.9362913Z Stop and delete container. Retry count = 0
+2026-04-04T23:46:33.9364586Z Stopping container: 024db73f0ed4_app-narrative-merge-asia.
+2026-04-04T23:46:33.9665759Z Deleting container: 024db73f0ed4_app-narrative-merge-asia. Retry count = 0
+2026-04-04T23:46:34.0563042Z Container spec TerminationMessagePolicy  path 
+2026-04-04T23:46:34.0566569Z Container is terminated. Total time elapsed: 120 ms.
+2026-04-04T23:46:34.0574369Z Site container: app-narrative-merge-asia terminated during site startup.
+2026-04-04T23:46:34.0581926Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:34.0664184Z Site startup probe failed after 7.3942317 seconds.
+2026-04-04T23:46:34.1203616Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:34.1221273Z Failed to start site. Revert by stopping site.
+2026-04-04T23:46:34.1224328Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:34.1226692Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:46:34.1226862Z Site: app-narrative-merge-asia stopped.
+2026-04-04T23:47:16.0636298Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:47:34, DetailsLevel: WARN
+2026-04-04T23:47:18.0113706Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:47:34, DetailsLevel: WARN
+2026-04-04T23:47:18.0116097Z Container start method called.
+2026-04-04T23:47:18.0117576Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:47:18.0118818Z Establishing network.
+2026-04-04T23:47:18.0120231Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-04T23:47:18.5886228Z Image appsvc/python:3.10_20260203.2.tuxprod is pulled from registry 10.1.0.6:13209
+2026-04-04T23:47:18.5889704Z Container is starting.
+2026-04-04T23:47:18.5890563Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:47:18.5891949Z Establishing user namespace if not established already.
+2026-04-04T23:47:18.5893300Z Establishing network if not established already.
+2026-04-04T23:47:18.5894694Z Mounting volumes.
+2026-04-04T23:47:18.5897435Z Nested mountpoint 
+2026-04-04T23:47:18.6171714Z Nested mountpoint volatile/logs
+2026-04-04T23:47:18.6255886Z Nested mountpoint 
+2026-04-04T23:47:18.6263664Z Nested mountpoint 
+2026-04-04T23:47:18.6363784Z Nested mountpoint 
+2026-04-04T23:47:18.7908947Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for app-narrative-merge-asia. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-04T23:47:18.7910451Z Creating container.
+2026-04-04T23:47:18.7911685Z Creating pipes for streaming container io.
+2026-04-04T23:47:18.7912558Z Creating stdout named pipe at /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stdout_a1e005c8b2d340ea9315c2ad901bf10f.
+2026-04-04T23:47:18.7914144Z Successfully created stdout named pipe at: /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stdout_a1e005c8b2d340ea9315c2ad901bf10f.
+2026-04-04T23:47:18.7914819Z Opening named pipe /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stdout_a1e005c8b2d340ea9315c2ad901bf10f for reading in non-blocking mode.
+2026-04-04T23:47:18.7915720Z Successfully opened named pipe: /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stdout_a1e005c8b2d340ea9315c2ad901bf10f.
+2026-04-04T23:47:18.7916429Z Successfully removed non-blocking flag from /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stdout_a1e005c8b2d340ea9315c2ad901bf10f.
+2026-04-04T23:47:18.7919656Z Creating stderr named pipe at /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stderr_62c8949357f742828093946748ada682.
+2026-04-04T23:47:18.7921341Z Successfully created stderr named pipe at: /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stderr_62c8949357f742828093946748ada682.
+2026-04-04T23:47:18.7922919Z Opening named pipe /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stderr_62c8949357f742828093946748ada682 for reading in non-blocking mode.
+2026-04-04T23:47:18.7924112Z Successfully opened named pipe: /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stderr_62c8949357f742828093946748ada682.
+2026-04-04T23:47:18.7925242Z Successfully removed non-blocking flag from /podr/container/pipe/0d1568f0c739_app-narrative-merge-asia/stderr_62c8949357f742828093946748ada682.
+2026-04-04T23:47:18.7926664Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-04T23:47:19.3560529Z Starting container: 0d1568f0c739_app-narrative-merge-asia.
+2026-04-04T23:47:19.4093056Z Starting watchers and probes.
+2026-04-04T23:47:19.4096534Z Starting metrics collection.
+2026-04-04T23:47:19.4098379Z Container is running.
+2026-04-04T23:47:19.4099493Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:47:19.4421058Z Container start method finished after 1430 ms.
+2026-04-04T23:47:19.4423623Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:47:19.4423957Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-04T23:47:36.8516100Z Container has finished running with exit code: 1.
+2026-04-04T23:47:36.8517877Z Container is terminating. Grace period: 5 seconds.
+2026-04-04T23:47:36.8536644Z Stop and delete container. Retry count = 0
+2026-04-04T23:47:36.8537847Z Stopping container: 0d1568f0c739_app-narrative-merge-asia.
+2026-04-04T23:47:36.8916402Z Deleting container: 0d1568f0c739_app-narrative-merge-asia. Retry count = 0
+2026-04-04T23:47:37.0754558Z Container spec TerminationMessagePolicy  path 
+2026-04-04T23:47:37.0756308Z Container is terminated. Total time elapsed: 223 ms.
+2026-04-04T23:47:37.0757464Z Site container: app-narrative-merge-asia terminated during site startup.
+2026-04-04T23:47:37.0812475Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:46:34, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:37.1104658Z Site startup probe failed after 17.6676331 seconds.
+2026-04-04T23:47:37.2051642Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:37.2065189Z Failed to start site. Revert by stopping site.
+2026-04-04T23:47:37.2067158Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:37.2069637Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:37.2069790Z Site: app-narrative-merge-asia stopped.
+2026-04-04T23:47:37.2344033Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:37.3806799Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:37.4953821Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:47:37 (UTC), DetailsLevel: ERR
+2026-04-04T23:47:37.5508288Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:47:37 (UTC), DetailsLevel: ERR
+2026-04-04T23:47:42.7215159Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:47:37 (UTC), DetailsLevel: ERR
+2026-04-04T23:47:44.2235627Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:47:37 (UTC), DetailsLevel: ERR
+2026-04-04T23:47:44.2312873Z Container start method called.
+2026-04-04T23:47:44.2352116Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:47:44.2367026Z Establishing network.
+2026-04-04T23:47:44.2372096Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-04T23:47:44.5018427Z Container is starting.
+2026-04-04T23:47:44.5033174Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:47:44.5034683Z Establishing user namespace if not established already.
+2026-04-04T23:47:44.5064066Z Establishing network if not established already.
+2026-04-04T23:47:44.5066305Z Mounting volumes.
+2026-04-04T23:47:44.5068305Z Nested mountpoint 
+2026-04-04T23:47:44.5170606Z Nested mountpoint volatile/logs
+2026-04-04T23:47:44.5239857Z Nested mountpoint 
+2026-04-04T23:47:44.5269925Z Nested mountpoint 
+2026-04-04T23:47:44.5326752Z Nested mountpoint 
+2026-04-04T23:47:44.8026060Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for app-narrative-merge-asia. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-04T23:47:44.8033230Z Creating container.
+2026-04-04T23:47:44.8045675Z Creating pipes for streaming container io.
+2026-04-04T23:47:44.8056526Z Creating stdout named pipe at /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stdout_f5f8c22de08e434da7cb74a9a2ce1268.
+2026-04-04T23:47:44.8070862Z Successfully created stdout named pipe at: /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stdout_f5f8c22de08e434da7cb74a9a2ce1268.
+2026-04-04T23:47:44.8076670Z Opening named pipe /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stdout_f5f8c22de08e434da7cb74a9a2ce1268 for reading in non-blocking mode.
+2026-04-04T23:47:44.8096913Z Successfully opened named pipe: /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stdout_f5f8c22de08e434da7cb74a9a2ce1268.
+2026-04-04T23:47:44.8102329Z Successfully removed non-blocking flag from /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stdout_f5f8c22de08e434da7cb74a9a2ce1268.
+2026-04-04T23:47:44.8152879Z Creating stderr named pipe at /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stderr_261d22953fc34e94ad85e51b6fa5f785.
+2026-04-04T23:47:44.8187268Z Successfully created stderr named pipe at: /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stderr_261d22953fc34e94ad85e51b6fa5f785.
+2026-04-04T23:47:44.8194118Z Opening named pipe /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stderr_261d22953fc34e94ad85e51b6fa5f785 for reading in non-blocking mode.
+2026-04-04T23:47:44.8220777Z Successfully opened named pipe: /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stderr_261d22953fc34e94ad85e51b6fa5f785.
+2026-04-04T23:47:44.8238402Z Successfully removed non-blocking flag from /podr/container/pipe/d6666821e9c9_app-narrative-merge-asia/stderr_261d22953fc34e94ad85e51b6fa5f785.
+2026-04-04T23:47:44.8254994Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-04T23:47:45.6216186Z Starting container: d6666821e9c9_app-narrative-merge-asia.
+2026-04-04T23:47:45.7684888Z Starting watchers and probes.
+2026-04-04T23:47:45.7745287Z Starting metrics collection.
+2026-04-04T23:47:45.7756288Z Container is running.
+2026-04-04T23:47:45.7757926Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:47:45.8213562Z Container start method finished after 1589 ms.
+2026-04-04T23:47:45.8216410Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:47:45.8217196Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-04T23:47:54.2542154Z Container has finished running with exit code: 1.
+2026-04-04T23:47:54.2544629Z Container is terminating. Grace period: 5 seconds.
+2026-04-04T23:47:54.2551616Z Stop and delete container. Retry count = 0
+2026-04-04T23:47:54.2555425Z Stopping container: d6666821e9c9_app-narrative-merge-asia.
+2026-04-04T23:47:54.2878875Z Deleting container: d6666821e9c9_app-narrative-merge-asia. Retry count = 0
+2026-04-04T23:47:54.4204217Z Container spec TerminationMessagePolicy  path 
+2026-04-04T23:47:54.4206176Z Container is terminated. Total time elapsed: 165 ms.
+2026-04-04T23:47:54.4212664Z Site container: app-narrative-merge-asia terminated during site startup.
+2026-04-04T23:47:54.4214217Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:37, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:54.4270053Z Site startup probe failed after 8.6048384 seconds.
+2026-04-04T23:47:54.5185100Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:54.5198476Z Failed to start site. Revert by stopping site.
+2026-04-04T23:47:54.5210615Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:54.5430095Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:54.5430487Z Site: app-narrative-merge-asia stopped.
+2026-04-04T23:47:54.5466521Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:54.6548480Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:47:54.6973825Z Site: app-narrative-merge-asia will be blocked for 1 minutes till 04/04/2026 23:48:54
+2026-04-04T23:47:54.6979373Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: app-narrative-merge-asia will be blocked for 1 minutes till 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:47:54.6994357Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:47:54 (UTC), DetailsLevel: WARN
+2026-04-04T23:47:54.7385800Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:47:54 (UTC), DetailsLevel: WARN
+2026-04-04T23:47:59.7946203Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:47:59.7946530Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:04.8436698Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:04.8437003Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:09.9147795Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:09.9148458Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:14.9781356Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:14.9781671Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:20.0432963Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:20.0433287Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:25.0872040Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:25.0872333Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:30.1310268Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:30.1310552Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:35.2014092Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:35.2014979Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:40.2583341Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:40.2583722Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:45.3608941Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:45.3612487Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:50.4115527Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:50.4115837Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:48:54.6984619Z Site: app-narrative-merge-asia is unblocked.
+2026-04-04T23:48:55.6051520Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:55.9510681Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:48:54, DetailsLevel: WARN
+2026-04-04T23:48:55.9511818Z Container start method called.
+2026-04-04T23:48:55.9512208Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:48:55.9512926Z Establishing network.
+2026-04-04T23:48:55.9513710Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-04T23:48:56.0216956Z Container is starting.
+2026-04-04T23:48:56.0217708Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:48:56.0218873Z Establishing user namespace if not established already.
+2026-04-04T23:48:56.0220183Z Establishing network if not established already.
+2026-04-04T23:48:56.0221578Z Mounting volumes.
+2026-04-04T23:48:56.0223304Z Nested mountpoint 
+2026-04-04T23:48:56.0266957Z Nested mountpoint volatile/logs
+2026-04-04T23:48:56.0386339Z Nested mountpoint 
+2026-04-04T23:48:56.0394337Z Nested mountpoint 
+2026-04-04T23:48:56.0401154Z Nested mountpoint 
+2026-04-04T23:48:56.2215717Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for app-narrative-merge-asia. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-04T23:48:56.2217188Z Creating container.
+2026-04-04T23:48:56.2218374Z Creating pipes for streaming container io.
+2026-04-04T23:48:56.2219655Z Creating stdout named pipe at /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stdout_1de6a393ec7040c6bf99d8bfd5b9c907.
+2026-04-04T23:48:56.2221822Z Successfully created stdout named pipe at: /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stdout_1de6a393ec7040c6bf99d8bfd5b9c907.
+2026-04-04T23:48:56.2222878Z Opening named pipe /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stdout_1de6a393ec7040c6bf99d8bfd5b9c907 for reading in non-blocking mode.
+2026-04-04T23:48:56.2224148Z Successfully opened named pipe: /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stdout_1de6a393ec7040c6bf99d8bfd5b9c907.
+2026-04-04T23:48:56.2229924Z Successfully removed non-blocking flag from /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stdout_1de6a393ec7040c6bf99d8bfd5b9c907.
+2026-04-04T23:48:56.2232731Z Creating stderr named pipe at /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stderr_b634492afb114ea1be63254e4a52b698.
+2026-04-04T23:48:56.2234486Z Successfully created stderr named pipe at: /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stderr_b634492afb114ea1be63254e4a52b698.
+2026-04-04T23:48:56.2235652Z Opening named pipe /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stderr_b634492afb114ea1be63254e4a52b698 for reading in non-blocking mode.
+2026-04-04T23:48:56.2335308Z Successfully opened named pipe: /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stderr_b634492afb114ea1be63254e4a52b698.
+2026-04-04T23:48:56.2337634Z Successfully removed non-blocking flag from /podr/container/pipe/b0f3af45b4eb_app-narrative-merge-asia/stderr_b634492afb114ea1be63254e4a52b698.
+2026-04-04T23:48:56.2339942Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-04T23:48:56.5344928Z Starting container: b0f3af45b4eb_app-narrative-merge-asia.
+2026-04-04T23:48:56.5586068Z Starting watchers and probes.
+2026-04-04T23:48:56.5617090Z Starting metrics collection.
+2026-04-04T23:48:56.5623509Z Container is running.
+2026-04-04T23:48:56.5633172Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:48:56.5873397Z Container start method finished after 635 ms.
+2026-04-04T23:48:56.5876300Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:48:56.5879571Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-04T23:49:03.1445896Z Container has finished running with exit code: 1.
+2026-04-04T23:49:03.1447425Z Container is terminating. Grace period: 5 seconds.
+2026-04-04T23:49:03.1459555Z Stop and delete container. Retry count = 0
+2026-04-04T23:49:03.1462486Z Stopping container: b0f3af45b4eb_app-narrative-merge-asia.
+2026-04-04T23:49:03.2048835Z Deleting container: b0f3af45b4eb_app-narrative-merge-asia. Retry count = 0
+2026-04-04T23:49:03.3135217Z Container spec TerminationMessagePolicy  path 
+2026-04-04T23:49:03.3137172Z Container is terminated. Total time elapsed: 168 ms.
+2026-04-04T23:49:03.3138462Z Site container: app-narrative-merge-asia terminated during site startup.
+2026-04-04T23:49:03.3139274Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:47:54, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:49:03.3152676Z Site startup probe failed after 6.726931 seconds.
+2026-04-04T23:49:03.3788550Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:49:03.3801421Z Failed to start site. Revert by stopping site.
+2026-04-04T23:49:03.3802238Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:49:03.3804415Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:49:03.3804564Z Site: app-narrative-merge-asia stopped.
+2026-04-04T23:49:03.3856299Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:49:03.4827247Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:49:03.5526587Z Site: app-narrative-merge-asia will be blocked for 1 minutes till 04/04/2026 23:50:03
+2026-04-04T23:49:03.5596499Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: app-narrative-merge-asia will be blocked for 1 minutes till 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:03.5599843Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:49:03 (UTC), DetailsLevel: WARN
+2026-04-04T23:49:03.5945994Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/04/2026 23:49:03 (UTC), DetailsLevel: WARN
+2026-04-04T23:49:08.6465984Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:08.6466268Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:13.6998279Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:13.6998512Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:18.7460540Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:18.7461499Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:23.8030584Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:23.8030856Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:28.8512425Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:28.8512734Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:33.8950120Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:33.8950481Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:38.9421399Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:38.9421603Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:44.0111326Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:44.0111650Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:49.0683744Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:49.0684145Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:54.1216133Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:54.1216437Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:49:59.1941312Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:49:59.1941649Z Start site prohibitted because the site is being blocked.
+2026-04-04T23:50:03.5512210Z Site: app-narrative-merge-asia is unblocked.
+2026-04-04T23:50:04.2497298Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:50:04.5149684Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 04/04/2026 23:50:03, DetailsLevel: WARN
+2026-04-04T23:50:04.5155348Z Container start method called.
+2026-04-04T23:50:04.5157508Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:50:04.5158809Z Establishing network.
+2026-04-04T23:50:04.5160086Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-04T23:50:04.5916733Z Container is starting.
+2026-04-04T23:50:04.5917578Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for app-narrative-merge-asia., DetailsLevel: INFO
+2026-04-04T23:50:04.5919059Z Establishing user namespace if not established already.
+2026-04-04T23:50:04.5920327Z Establishing network if not established already.
+2026-04-04T23:50:04.5921793Z Mounting volumes.
+2026-04-04T23:50:04.5929395Z Nested mountpoint 
+2026-04-04T23:50:04.5938137Z Nested mountpoint volatile/logs
+2026-04-04T23:50:04.5992720Z Nested mountpoint 
+2026-04-04T23:50:04.6020836Z Nested mountpoint 
+2026-04-04T23:50:04.6128855Z Nested mountpoint 
+2026-04-04T23:50:04.6626365Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for app-narrative-merge-asia. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-04T23:50:04.6630925Z Creating container.
+2026-04-04T23:50:04.6634764Z Creating pipes for streaming container io.
+2026-04-04T23:50:04.6640396Z Creating stdout named pipe at /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stdout_946c64fc7310426c9f03e4a74adedc11.
+2026-04-04T23:50:04.6645315Z Successfully created stdout named pipe at: /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stdout_946c64fc7310426c9f03e4a74adedc11.
+2026-04-04T23:50:04.6647851Z Opening named pipe /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stdout_946c64fc7310426c9f03e4a74adedc11 for reading in non-blocking mode.
+2026-04-04T23:50:04.6652815Z Successfully opened named pipe: /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stdout_946c64fc7310426c9f03e4a74adedc11.
+2026-04-04T23:50:04.6655791Z Successfully removed non-blocking flag from /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stdout_946c64fc7310426c9f03e4a74adedc11.
+2026-04-04T23:50:04.6660346Z Creating stderr named pipe at /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stderr_2bd5b52d8230470b9d83a83c818a1d74.
+2026-04-04T23:50:04.6664614Z Successfully created stderr named pipe at: /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stderr_2bd5b52d8230470b9d83a83c818a1d74.
+2026-04-04T23:50:04.6666671Z Opening named pipe /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stderr_2bd5b52d8230470b9d83a83c818a1d74 for reading in non-blocking mode.
+2026-04-04T23:50:04.6670034Z Successfully opened named pipe: /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stderr_2bd5b52d8230470b9d83a83c818a1d74.
+2026-04-04T23:50:04.6673468Z Successfully removed non-blocking flag from /podr/container/pipe/6cadc167ffd3_app-narrative-merge-asia/stderr_2bd5b52d8230470b9d83a83c818a1d74.
+2026-04-04T23:50:04.6680354Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.6:13209 and fully qualified image name: 10.1.0.6:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-04T23:50:04.8786105Z Starting container: 6cadc167ffd3_app-narrative-merge-asia.
+2026-04-04T23:50:04.8992576Z Starting watchers and probes.
+2026-04-04T23:50:04.8995133Z Starting metrics collection.
+2026-04-04T23:50:04.9003458Z Container is running.
+2026-04-04T23:50:04.9004370Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:50:04.9205783Z Container start method finished after 404 ms.
+2026-04-04T23:50:04.9219280Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container app-narrative-merge-asia successfully created and is running., DetailsLevel: INFO
+2026-04-04T23:50:04.9219760Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-04T23:50:13.1591610Z Container has finished running with exit code: 1.
+2026-04-04T23:50:13.1599743Z Container is terminating. Grace period: 5 seconds.
+2026-04-04T23:50:13.1609218Z Stop and delete container. Retry count = 0
+2026-04-04T23:50:13.1611416Z Stopping container: 6cadc167ffd3_app-narrative-merge-asia.
+2026-04-04T23:50:13.1957076Z Deleting container: 6cadc167ffd3_app-narrative-merge-asia. Retry count = 0
+2026-04-04T23:50:13.3356538Z Container spec TerminationMessagePolicy  path 
+2026-04-04T23:50:13.3361169Z Container is terminated. Total time elapsed: 175 ms.
+2026-04-04T23:50:13.3362994Z Site container: app-narrative-merge-asia terminated during site startup.
+2026-04-04T23:50:13.3363884Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:49:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:50:13.3386290Z Site startup probe failed after 8.4154442 seconds.
+2026-04-04T23:50:13.3958705Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:50:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:50:13.3989219Z Failed to start site. Revert by stopping site.
+2026-04-04T23:50:13.3990545Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:50:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:50:13.3993314Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/04/2026 23:50:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: app-narrative-merge-asia terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-04T23:50:13.3993486Z Site: app-narrative-merge-asia stopped.
